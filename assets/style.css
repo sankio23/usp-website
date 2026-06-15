@@ -275,3 +275,8 @@ header nav a,.navdrop-top{transition:color .2s ease}
 .tile:hover{transform:translateY(-5px);border-color:var(--line)}
 .tile:hover .tile-art{transform:scale(1.12);opacity:.62}
 .tile:hover .tile-go{transform:translate(3px,-3px);opacity:1}
+
+/* ---- subsection entrance ---- */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.subnav{animation:fadeDown .5s ease both}
+@media (prefers-reduced-motion: reduce){.subnav{animation:none}}

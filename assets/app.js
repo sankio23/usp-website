@@ -499,12 +499,19 @@
   }
   function renderCurrentContacts() {
     chrome("current");
+    const org=[
+      {slug:"fano", init:"VF", n:"Vincenzo Fano", a:"University of Urbino · Director", b:"Director of the School. Full professor of Logic and Philosophy of Science at the University of Urbino (Department of Pure and Applied Sciences). His research spans the foundations of physics, the philosophy of space and time, and scientific realism."},
+      {slug:"sanchioni", init:"MS", n:"Marco Sanchioni", a:"Sophia University Institute · Organizer", b:"Organizer of the School. Works in philosophy of physics, with a focus on the foundations of quantum mechanics and quantum gravity."},
+      {slug:"covoni", init:"NC", n:"Niccolò Covoni", a:"University of Urbino / USI · Organizer", b:"Organizer of the School, working in philosophy of physics between the University of Urbino and the Università della Svizzera Italiana."}
+    ];
     byId("app").innerHTML = c26nav("contacts") + `
+    <section class="block"><div class="wrap">
+      <div class="section-head"><div class="kicker">The team</div><h2>Direction &amp; organisation</h2></div>
+      <div class="spk-grid">${org.map(spkCard).join("")}</div>
+    </div></section>
     <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Contacts</div><h2>Get in touch</h2></div>
       <dl class="info">
-        <dt>Director</dt><dd>Prof. Vincenzo Fano (DiSPeA, University of Urbino)</dd>
-        <dt>Organizers</dt><dd>Niccolò Covoni (University of Urbino / USI) &middot; Marco Sanchioni (Sophia University Institute)</dd>
         <dt>Email</dt><dd><a href="mailto:${S.email}">${S.email}</a></dd>
         <dt>Lectures</dt><dd><a href="${S.channel}" target="_blank" rel="noopener">YouTube channel &#8599;</a></dd>
       </dl>
@@ -519,13 +526,14 @@
     const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:0.06, rootMargin:'0px 0px -32px 0px' });
     const SEL = '.section-head, .card, .tile, .vcard2, .spk-card, .prog-day, .acc, .bio, .feature, dl.info, .edition, .filters, .vgrid2 > *, .plist';
     function tag(){
-      let i=0, last=null;
+      const fresh=[]; let i=0, last=null;
       app.querySelectorAll(SEL).forEach(el=>{
         if(el.dataset.rev) return; el.dataset.rev='1';
         const p=el.parentElement; if(p!==last){ i=0; last=p; }
-        el.classList.add('reveal'); el.style.transitionDelay=Math.min(i*45,260)+'ms'; i++;
-        io.observe(el);
+        el.classList.add('reveal'); el.style.transitionDelay=Math.min(i*45,300)+'ms'; i++;
+        fresh.push(el);
       });
+      if(fresh.length) requestAnimationFrame(()=>requestAnimationFrame(()=>fresh.forEach(el=>io.observe(el))));
     }
     new MutationObserver(()=>requestAnimationFrame(tag)).observe(app,{childList:true});
     requestAnimationFrame(tag);
