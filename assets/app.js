@@ -436,7 +436,7 @@
   }
   function renderCurrentSpeakers() {
     chrome("current");
-    byId("app").innerHTML = c26hero() + c26nav("speakers") + `
+    byId("app").innerHTML = c26nav("speakers") + `
     <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Speakers</div><h2>Plenary speakers</h2>
         <p>Five internationally renowned speakers across physics and philosophy.</p></div>
@@ -445,7 +445,7 @@
   }
   function renderCurrentProgram() {
     chrome("current");
-    byId("app").innerHTML = c26hero() + c26nav("program") + `
+    byId("app").innerHTML = c26nav("program") + `
     <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Programme</div><h2>Five days in Urbino</h2>
         <p>All times are CEST (UTC+2). Main venue: Palazzo Battiferri.</p></div>
@@ -454,7 +454,7 @@
   }
   function renderCurrentParticipation() {
     chrome("current");
-    byId("app").innerHTML = c26hero() + c26nav("participation") + `
+    byId("app").innerHTML = c26nav("participation") + `
     <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Call for Participations</div><h2>Application, abstracts &amp; fee</h2>
         <p>Applications for the ${current.year} edition are now closed &mdash; the School is in progress.</p></div>
@@ -469,7 +469,7 @@
   }
   function renderCurrentParticipants() {
     chrome("current");
-    byId("app").innerHTML = c26hero() + c26nav("participants") + `
+    byId("app").innerHTML = c26nav("participants") + `
     <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Participants</div><h2>Selected participants</h2>
         <p>${Y2026.participants.length} young researchers from across Europe and beyond.</p></div>
@@ -478,7 +478,7 @@
   }
   function renderCurrentUrbino() {
     chrome("current");
-    byId("app").innerHTML = c26hero() + c26nav("urbino") + `
+    byId("app").innerHTML = c26nav("urbino") + `
     <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Getting there</div><h2>How to reach Urbino</h2></div>
       <dl class="info">
@@ -499,7 +499,7 @@
   }
   function renderCurrentContacts() {
     chrome("current");
-    byId("app").innerHTML = c26hero() + c26nav("contacts") + `
+    byId("app").innerHTML = c26nav("contacts") + `
     <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Contacts</div><h2>Get in touch</h2></div>
       <dl class="info">
