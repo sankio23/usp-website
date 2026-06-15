@@ -520,23 +520,26 @@
 
   /* ---------- scroll-reveal animations ---------- */
   (function(){
-    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const app = document.getElementById('app');
-    if(!app || reduce) return;
-    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:0.06, rootMargin:'0px 0px -32px 0px' });
+    const app = document.getElementById('app'); if(!app) return;
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:0.05, rootMargin:'0px 0px -24px 0px' });
     const SEL = '.section-head, .card, .tile, .vcard2, .spk-card, .prog-day, .acc, .bio, .feature, dl.info, .edition, .filters, .vgrid2 > *, .plist';
     function tag(){
-      const fresh=[]; let i=0, last=null;
-      app.querySelectorAll(SEL).forEach(el=>{
-        if(el.dataset.rev) return; el.dataset.rev='1';
-        const p=el.parentElement; if(p!==last){ i=0; last=p; }
-        el.classList.add('reveal'); el.style.transitionDelay=Math.min(i*45,300)+'ms'; i++;
-        fresh.push(el);
-      });
-      if(fresh.length) requestAnimationFrame(()=>requestAnimationFrame(()=>fresh.forEach(el=>io.observe(el))));
+      try{
+        let i=0, last=null;
+        app.querySelectorAll(SEL).forEach(el=>{
+          if(el.dataset.rev) return; el.dataset.rev='1';
+          const p=el.parentElement; if(p!==last){ i=0; last=p; }
+          el.classList.add('reveal'); el.style.transitionDelay=Math.min(i*45,300)+'ms'; i++;
+          io.observe(el);
+        });
+      }catch(e){}
     }
-    new MutationObserver(()=>requestAnimationFrame(tag)).observe(app,{childList:true});
-    requestAnimationFrame(tag);
+    new MutationObserver(tag).observe(app,{childList:true});
+    tag();
+    document.addEventListener('DOMContentLoaded', tag);
+    window.addEventListener('load', tag);
+    setTimeout(tag,200); setTimeout(tag,600);
   })();
 
   window.UPSS = { renderHome, renderCurrentHome, renderCurrentSpeakers, renderCurrentProgram, renderCurrentParticipation, renderCurrentParticipants, renderCurrentUrbino, renderCurrentContacts, renderLectures, renderSpeakers, renderEditions, renderAbout };
