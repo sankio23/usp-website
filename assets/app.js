@@ -84,60 +84,32 @@
         <img class="cthumb" ${cover(e)} alt="${esc(e.tag)}">
         <div class="year">${e.roman} · ${e.year}</div>
         <h3>${esc(e.theme)}</h3>
-        <div class="when">${esc(e.dateRange)}</div>
-        <p>${esc(e.blurb.split(". ")[0])}.</p>
-        <div class="speakers"><b>Speakers:</b> ${e.speakers.map(s=>esc(s.n.split(" ").slice(-1))).join(", ")}</div>
       </a>`).join("");
 
     byId("app").innerHTML = `
-    <section class="hero hero-home" style="background-image:url('assets/art/hero-cosmos.svg')">
-      <div class="wrap hero-grid">
-        <div>
-          <span class="eyebrow">University of Urbino · since the late 1990s</span>
-          <h1>The foundations of physics, in a Renaissance city</h1>
-          <p class="lead">The ${esc(S.name)} brings the best young scholars to one of Europe's oldest universities to study the foundations of physics with the foremost experts in the field. Each year is devoted to a single frontier theme.</p>
-          <div class="meta">
-            <div><b>University of Urbino</b></div>
-            <div><b>Annual · since the late 1990s</b></div>
-            <div><b>Special issue of <em>Sophia</em></b></div>
-          </div>
-          <div class="cta-row">
-            <a class="btn btn-gold" href="current.html">This year: ${esc(current.tag)} →</a>
-            <a class="btn btn-ghost" href="lectures.html">Watch past lectures</a>
-          </div>
+    <section class="hero hero-home home-hero" style="background-image:url('assets/art/hero-cosmos.svg')">
+      <div class="wrap">
+        <span class="eyebrow">University of Urbino · since the late 1990s</span>
+        <h1 class="home-title">Philosophy of Physics<br>Summer School</h1>
+        <p class="lead home-lead">One frontier theme each year, in the Renaissance city of Urbino.</p>
+        <div class="cta-row">
+          <a class="btn btn-gold" href="current.html">2026 · ${esc(current.tag)} →</a>
+          <a class="btn btn-ghost" href="lectures.html">Lectures</a>
         </div>
-        <figure class="hero-fig"><img ${cover(current)} alt="${esc(current.tag)}"><figcaption>${current.roman} · ${esc(current.theme)}</figcaption></figure>
       </div>
     </section>
 
     <section class="block"><div class="wrap">
-      <div class="section-head"><div class="kicker">The School</div>
-        <h2>One home for a long tradition</h2>
-        <p>${esc(S.tagline)} Each year focuses on a single frontier theme, combining plenary lectures by leading speakers with seminars and a workshop for young researchers — whose selected papers appear in a special issue of <em>Sophia</em>.</p>
-      </div>
-      <div class="features">
-        <a class="feature card" href="lectures.html"><div class="ic"></div><h3>Lecture Library</h3><p>Every edition's lectures, gathered as a permanent video archive you can browse by year, theme or speaker.</p></a>
-        <a class="feature card" href="speakers.html"><div class="ic"></div><h3>Speakers</h3><p>The cumulative who's-who of physicists and philosophers who have taught at the School over the years.</p></a>
-        <a class="feature card" href="editions.html"><div class="ic"></div><h3>Past editions</h3><p>The full record of themes and years, each linked to its lectures and original programme.</p></a>
+      <div class="tiles">
+        <a class="tile" href="lectures.html"><span class="tnum">01</span><h3>Lecture Library</h3></a>
+        <a class="tile" href="speakers.html"><span class="tnum">02</span><h3>Speakers</h3></a>
+        <a class="tile" href="editions.html"><span class="tnum">03</span><h3>Past Editions</h3></a>
       </div>
     </div></section>
 
     <section class="block"><div class="wrap">
-      <div class="edition">
-        <div class="head"><div>
-          <div class="num">Current edition · ${current.roman} (${current.year})</div>
-          <h3>${esc(current.theme)}</h3>
-          <div class="when">${esc(current.dateRange)} · ${esc(current.location)}</div>
-        </div>${current.status==="current"?'<span class="badge live">In progress</span>':''}</div>
-        <div class="cta-row"><a class="btn btn-gold" href="current.html">About this year's school →</a></div>
-      </div>
-    </div></section>
-
-    <section class="block"><div class="wrap">
-      <div class="section-head"><div class="kicker">Archive</div><h2>Recent editions</h2>
-        <p>A growing record of the School's themes, speakers and years.</p></div>
+      <div class="section-head"><div class="kicker">Recent editions</div></div>
       <div class="grid cols-3">${recent}</div>
-      <div class="cta-row" style="margin-top:28px"><a class="btn btn-ghost" href="editions.html">See all past editions</a></div>
     </div></section>`;
   }
 
