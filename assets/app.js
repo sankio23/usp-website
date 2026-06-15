@@ -27,9 +27,10 @@
       </a>
       <nav>
         ${link("index.html","Home","home")}
+        ${link("current.html","2026 Edition","current")}
         ${link("lectures.html","Lecture Library","lectures")}
         ${link("speakers.html","Speakers","speakers")}
-        ${link("editions.html","Editions","editions")}
+        ${link("editions.html","Past Editions","editions")}
         ${link("about.html","About &amp; Apply","about")}
       </nav>
     </div></header>`;
@@ -46,8 +47,9 @@
           <p><a href="mailto:${S.email}">${S.email}</a> · <a href="${S.channel}" target="_blank" rel="noopener">YouTube channel ↗</a></p>
         </div>
         <div><h4>Navigate</h4>
-          <a href="index.html">Home</a><a href="lectures.html">Lecture Library</a>
-          <a href="speakers.html">Speakers</a><a href="editions.html">Editions</a>
+          <a href="index.html">Home</a><a href="current.html">2026 Edition</a>
+          <a href="lectures.html">Lecture Library</a>
+          <a href="speakers.html">Speakers</a><a href="editions.html">Past Editions</a>
           <a href="about.html">About &amp; Apply</a>
         </div>
         <div><h4>Partners</h4>${partners}</div>
@@ -80,20 +82,20 @@
     <section class="hero hero-home" style="background-image:url('assets/art/hero-cosmos.svg')">
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow">${current.roman} Edition · ${esc(current.dateRange)}${current.status==="current"?" · current":""}</span>
-          <h1>${esc(current.theme)}</h1>
-          <p class="lead">The ${esc(S.name)} brings the best young scholars to one of Europe's oldest universities to study the foundations of physics with the foremost experts in the field.</p>
+          <span class="eyebrow">University of Urbino · since the late 1990s</span>
+          <h1>The foundations of physics, in a Renaissance city</h1>
+          <p class="lead">The ${esc(S.name)} brings the best young scholars to one of Europe's oldest universities to study the foundations of physics with the foremost experts in the field. Each year is devoted to a single frontier theme.</p>
           <div class="meta">
             <div><b>University of Urbino</b></div>
-            <div><b>${esc(current.dateRange)}</b></div>
-            <div><b>${current.roman}</b> edition</div>
+            <div><b>Annual · since the late 1990s</b></div>
+            <div><b>Special issue of <em>Sophia</em></b></div>
           </div>
           <div class="cta-row">
-            <a class="btn btn-gold" href="about.html#apply">How to apply</a>
+            <a class="btn btn-gold" href="current.html">This year: ${esc(current.tag)} →</a>
             <a class="btn btn-ghost" href="lectures.html">Watch past lectures</a>
           </div>
         </div>
-        <figure class="hero-fig"><img ${cover(current)} alt="${esc(current.tag)}"><figcaption>${esc(current.tag)}</figcaption></figure>
+        <figure class="hero-fig"><img ${cover(current)} alt="${esc(current.tag)}"><figcaption>${current.roman} · ${esc(current.theme)}</figcaption></figure>
       </div>
     </section>
 
@@ -105,27 +107,18 @@
       <div class="features">
         <a class="feature card" href="lectures.html"><div class="ic"></div><h3>Lecture Library</h3><p>Every edition's lectures, gathered as a permanent video archive you can browse by year, theme or speaker.</p></a>
         <a class="feature card" href="speakers.html"><div class="ic"></div><h3>Speakers</h3><p>The cumulative who's-who of physicists and philosophers who have taught at the School over the years.</p></a>
-        <a class="feature card" href="editions.html"><div class="ic"></div><h3>Editions archive</h3><p>The full record of themes and years, each linked to its lectures and original programme.</p></a>
+        <a class="feature card" href="editions.html"><div class="ic"></div><h3>Past editions</h3><p>The full record of themes and years, each linked to its lectures and original programme.</p></a>
       </div>
     </div></section>
 
     <section class="block"><div class="wrap">
-      <div class="section-head"><div class="kicker">Current Edition</div>
-        <h2>${current.roman} · ${esc(current.theme)}</h2>
-        <p>${esc(current.blurb)}</p>
-      </div>
       <div class="edition">
-        <img class="ebanner" ${cover(current)} alt="${esc(current.tag)}">
         <div class="head"><div>
-          <div class="num">${current.roman} International Summer School</div>
+          <div class="num">Current edition · ${current.roman} (${current.year})</div>
           <h3>${esc(current.theme)}</h3>
           <div class="when">${esc(current.dateRange)} · ${esc(current.location)}</div>
         </div>${current.status==="current"?'<span class="badge live">In progress</span>':''}</div>
-        <div class="spk-list" style="margin-top:14px">${speakerLine(current.speakers)}</div>
-        <div class="cta-row">
-          <a class="btn btn-gold" href="about.html#apply">How to apply</a>
-          <a class="btn btn-ghost" href="lectures.html">Lecture Library</a>
-        </div>
+        <div class="cta-row"><a class="btn btn-gold" href="current.html">About this year's school →</a></div>
       </div>
     </div></section>
 
@@ -133,7 +126,7 @@
       <div class="section-head"><div class="kicker">Archive</div><h2>Recent editions</h2>
         <p>A growing record of the School's themes, speakers and years.</p></div>
       <div class="grid cols-3">${recent}</div>
-      <div class="cta-row" style="margin-top:28px"><a class="btn btn-ghost" href="editions.html">See all editions</a></div>
+      <div class="cta-row" style="margin-top:28px"><a class="btn btn-ghost" href="editions.html">See all past editions</a></div>
     </div></section>`;
   }
 
@@ -154,7 +147,14 @@
           <div class="year">${e.roman} · ${e.year}</div>
           <h3>${esc(e.theme)}</h3>
           <p class="vspk">${e.speakers.map(s=>esc(s.n)).join(" · ")}</p>
-          ${e.playlist?`<a class="vlink" href="https://www.youtube.com/playlist?list=${e.playlist}" target="_blank" rel="noopener">Open playlist on YouTube ↗</a>`:""}
+          ${e.lessons&&e.lessons.length?`
+          <details class="lessons">
+            <summary>${e.lessons.length} lectures — open one by one</summary>
+            <ol class="lesson-list">
+              ${e.lessons.map(L=>`<li><a href="https://www.youtube.com/watch?v=${L.id}&list=${e.playlist}" target="_blank" rel="noopener">${esc(L.t)}</a></li>`).join("")}
+            </ol>
+          </details>`:""}
+          ${e.playlist?`<a class="vlink" href="https://www.youtube.com/playlist?list=${e.playlist}" target="_blank" rel="noopener">Open full playlist on YouTube ↗</a>`:""}
         </div>
       </article>`;
 
@@ -241,7 +241,7 @@
           ${e.playlist
             ? `<a class="btn btn-gold" href="lectures.html">Watch lectures</a>`
             : (e.status==="current"
-                ? `<a class="btn btn-gold" href="about.html#apply">How to apply</a>`
+                ? `<a class="btn btn-gold" href="current.html">About this year's school →</a>`
                 : `<a class="btn btn-ghost" href="${S.channel}" target="_blank" rel="noopener">Lectures on YouTube ↗</a>`)}
         </div>
       </article>`;
@@ -314,5 +314,39 @@
     </div></section>`;
   }
 
-  window.UPSS = { renderHome, renderLectures, renderSpeakers, renderEditions, renderAbout };
+  /* ---------- CURRENT EDITION (this year) ---------- */
+  function renderCurrent() {
+    chrome("current");
+    byId("app").innerHTML = `
+    <section class="hero" style="padding:64px 0 26px"><div class="wrap">
+      <span class="eyebrow">${current.roman} Edition${current.status==="current"?" · in progress":""}</span>
+      <h1 style="font-size:clamp(2rem,4.6vw,3rem)">${esc(current.theme)}</h1>
+      <p class="lead">${esc(current.blurb)}</p>
+    </div></section>
+    <section class="block" style="border-top:none;padding-top:14px"><div class="wrap">
+      <div class="edition">
+        <img class="ebanner" ${cover(current)} alt="${esc(current.tag)}">
+        <div class="head"><div>
+          <div class="num">${current.roman} International Summer School</div>
+          <h3>${esc(current.theme)}</h3>
+          <div class="when">${esc(current.dateRange)} · ${esc(current.location)}</div>
+        </div>${current.status==="current"?'<span class="badge live">In progress</span>':''}</div>
+        <dl class="info">
+          <dt>Dates</dt><dd>${esc(current.dateRange)}</dd>
+          <dt>Venue</dt><dd>${esc(current.location)}</dd>
+          <dt>Registration</dt><dd>Closed — the school is currently in progress.</dd>
+          <dt>Official page</dt><dd><a href="${current.official}" target="_blank" rel="noopener">Official ${current.year} edition page ↗</a></dd>
+          <dt>Publication</dt><dd>Selected workshop papers appear in a special issue of <a href="https://journal.sophiauniversity.org/" target="_blank" rel="noopener"><em>Sophia</em></a>.</dd>
+        </dl>
+        <div style="margin-top:8px"><div class="kicker" style="margin-bottom:10px">Speakers</div>
+          <div class="spk-list">${speakerLine(current.speakers)}</div></div>
+        <div class="cta-row" style="margin-top:18px">
+          <a class="btn btn-gold" href="${current.official}" target="_blank" rel="noopener">Official edition page ↗</a>
+          <a class="btn btn-ghost" href="lectures.html">Lecture Library</a>
+        </div>
+      </div>
+    </div></section>`;
+  }
+
+  window.UPSS = { renderHome, renderCurrent, renderLectures, renderSpeakers, renderEditions, renderAbout };
 })();

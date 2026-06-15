@@ -165,3 +165,13 @@ footer .fine { margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--
 }
 
 .scard .spk-profile{margin-top:14px;padding:7px 14px;font-size:.86rem}
+
+.lessons{margin:12px 0 6px}
+.lessons summary{cursor:pointer;color:var(--gold);font-weight:600;font-size:.9rem;list-style:none}
+.lessons summary::-webkit-details-marker{display:none}
+.lessons summary::before{content:"▸ ";color:var(--gold)}
+.lessons[open] summary::before{content:"▾ "}
+.lesson-list{margin:12px 0 2px;padding-left:20px;display:grid;gap:8px}
+.lesson-list li{color:var(--muted)}
+.lesson-list a{color:var(--text);text-decoration:none;font-size:.9rem;line-height:1.35}
+.lesson-list a:hover{color:var(--gold);text-decoration:underline}

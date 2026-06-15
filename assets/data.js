@@ -105,6 +105,20 @@ window.SCHOOL = {
         { n: "Juliusz Doboszewski", a: "University of Bonn", u: "https://www.philosophie.uni-bonn.de/institut/personen/wissenschaftliches-personal/lichtenberg-professur-fuer-philosophie-und-geschichte-der-physik-prof-dr-dennis-lehmkuhl/juliusz-doboszewski" }
       ],
       playlist: "PLGB6R7lq1LX9Ez9sU2gjPQXd3MHeS2JmY",
+      lessons: [
+        { id: "Fzf4vC9Wip8", t: "Energy and Entropy in Cosmology — Erik Curiel (University of Bonn)" },
+        { id: "9nJ7j8EE1Zc", t: "Early Dark Energy: isn't it too early? — Vera Matarese (University of Perugia)" },
+        { id: "UsF_rI-_LjE", t: "Dark Energy and what we could know about the global structure of spacetime — Juliusz Doboszewski" },
+        { id: "E0_ETt89_ms", t: "Measure, Topology and Probabilistic Reasoning in Cosmology — Erik Curiel (University of Bonn)" },
+        { id: "MGbwtFdyObk", t: "An Introduction to the Physics of Dark Energy #4 — Viatcheslav Mukhanov (LMU Munich)" },
+        { id: "4g7QYQghI7o", t: "An Introduction to the Physics of Dark Energy #3 — Viatcheslav Mukhanov (LMU Munich)" },
+        { id: "AhNYyaqGbc0", t: "Epistemological problems of Dark Energy — Erik Curiel (University of Bonn)" },
+        { id: "SaVoXy8WGUI", t: "Dark Energy and (in)determinism — Juliusz Doboszewski (University of Bonn)" },
+        { id: "-ZKGO3eCykY", t: "An Introduction to the Physics of Dark Energy #2 — Viatcheslav Mukhanov (LMU Munich)" },
+        { id: "N7LIdr7m9no", t: "Dark Energy Fictionalism — Vera Matarese (University of Perugia)" },
+        { id: "oDxhOG8DTyI", t: "What is Dark Energy and why do we need it? — Erik Curiel (University of Bonn)" },
+        { id: "xmCAjHSO9Do", t: "An Introduction to the Physics of Dark Energy #1 — Viatcheslav Mukhanov (LMU Munich)" },
+      ],
       official: "https://sites.google.com/view/xxvii-urbino-summer-school/home"
     },
     {
@@ -124,6 +138,13 @@ window.SCHOOL = {
         { n: "Nicola Rossi", a: "Gran Sasso", u: "https://sciprofiles.com/profile/1466899" }
       ],
       playlist: "PLGB6R7lq1LX8IzpJZehTnsTXiI8-AfuPo", firstVideo: "EkdTxOjHm6c",
+      lessons: [
+        { id: "EkdTxOjHm6c", t: "Piero Ullio — Genesis of the dark matter problem, a modern perspective (SISSA)" },
+        { id: "7DaPRYmo4CQ", t: "Niels Martens — Introduction to the philosophy of dark matter & modified gravity" },
+        { id: "SEl4LIf5qvE", t: "Siska De Baerdemaeker — The epistemology of the dark matter and MOND debate" },
+        { id: "7-y7OFNQ7YQ", t: "Siska De Baerdemaeker — The epistemology of dark matter searches" },
+        { id: "1ABRnKoO_Jo", t: "Francesca Vidotto — Primordial Black Holes: History and Philosophy" },
+      ],
       official: "https://sites.google.com/view/xxvi-urbino-summer-school/home"
     },
     {
@@ -141,6 +162,25 @@ window.SCHOOL = {
         { n: "Sebastian De Haro", a: "UvA", u: "https://www.uva.nl/en/profile/h/a/s.deharoolle/s.de-haro-olle.html" }
       ],
       playlist: "PLGB6R7lq1LX-w5sSgaGqrHMgCEgZaCl3o", firstVideo: "lE4CI7LMJlE",
+      lessons: [
+        { id: "lE4CI7LMJlE", t: "Vincenzo Fano — Introduction to the School" },
+        { id: "LUIlDtpBFeQ", t: "Sebastian De Haro — A Schema for Dualities" },
+        { id: "FvZ5brTMrxY", t: "Jonathan Bain — The QECC Interpretation of AdS/CFT" },
+        { id: "dy9g-ejPMlM", t: "Sebastian De Haro — Particle-Soliton, S- & T-Dualities" },
+        { id: "DUTsWyrK7p0", t: "Johanna Erdmenger — Physics of Gauge/Gravity Duality for Philosophers I" },
+        { id: "b4uokYHcDws", t: "Johanna Erdmenger — Physics of Gauge/Gravity Duality for Philosophers II" },
+        { id: "144XS6cBmb8", t: "Johanna Erdmenger — Physics of Gauge/Gravity Duality for Philosophers III" },
+        { id: "5cloRF6p6qc", t: "Jonathan Bain — Topology and Entanglement? ER=EPR, Part I" },
+        { id: "ccGUoilgLYo", t: "Sebastian De Haro — Theoretical Roles of Dualities" },
+        { id: "03KNe9iusUE", t: "Jonathan Bain — Topology and Entanglement? ER=EPR, Part II" },
+        { id: "TlUbvJ-5UDg", t: "Johanna Erdmenger — Physics of Gauge/Gravity Duality for Philosophers IV" },
+        { id: "78R4dJf8v8g", t: "Sebastian De Haro — Practical Roles of Dualities" },
+        { id: "GRs7oH13Hjs", t: "Baptiste Le Bihan — Duality, Metaphysics and Spacetime" },
+        { id: "W0j_Abaeukg", t: "Lucy James — Locality, Separability and the Problem of Time" },
+        { id: "_oqJDvj0Dvg", t: "Konner Childers — (Non-)Holographic Dualities: Internal Symmetries and Unification" },
+        { id: "kWyiirx1TsE", t: "Siddharth Muthukrishnan — Operational vs. Descriptive Black Hole Complementarity" },
+        { id: "CR6_p1hihGw", t: "Jeremy Butterfield — Dualities in Physics: a Philosopher's View" },
+      ],
       official: "https://sites.google.com/view/xxv-urbino-summer-school/home"
     },
     {
@@ -160,6 +200,27 @@ window.SCHOOL = {
         { n: "Patricia Palacios", a: "University of Salzburg", u: "https://www.plus.ac.at/philosophy-gw/the-department/personal/patricia-palacios/?lang=en" }
       ],
       playlist: "PLGB6R7lq1LX8eO7Ijy4B-sL-J8cTfmwKE", firstVideo: "3zDSWeUvrlw",
+      lessons: [
+        { id: "3zDSWeUvrlw", t: "Official Greetings to the School" },
+        { id: "t1rXzJdXwD8", t: "Erik Curiel — A Primer on Black Hole Thermodynamics and the Hawking Effect [I]" },
+        { id: "dg29G5zWP4s", t: "Sebastian De Haro — A Conceptual Analysis of Black Holes in String Theory" },
+        { id: "0MZXjZvXxQQ", t: "Daniel Harlow — Why is gravity different? [1]" },
+        { id: "Jm5YNhYxb5c", t: "Patricia Palacios — On the Use of Universality Arguments in Black Hole Physics" },
+        { id: "Dy5rYj6DeFc", t: "Joao Luis Rosa — Relativistic Fluid Spheres with Thin-Shells as Black Hole Mimickers" },
+        { id: "rj9nz-c2YDM", t: "Grace Field — Analogue Experiments as Exploration" },
+        { id: "gHzSbwLC9fw", t: "Daniel Harlow — Semiclassical Black Holes and the Information Problem [II]" },
+        { id: "9MLGbG_9qlw", t: "Erik Curiel — A Primer on Black Hole Thermodynamics and the Hawking Effect, part 2 [2]" },
+        { id: "Seq8cGwOTDk", t: "Saakshi Dulani — Black Hole Paradoxes" },
+        { id: "fWzpahRtq1w", t: "Jinzhao Wang — Refined Quantum Extremal Surface Prescription" },
+        { id: "2I0wVns-4Kk", t: "Daniel Harlow — AdS/CFT and Holography [III]" },
+        { id: "JJfL1TT0u-8", t: "Enrico Magnani — A Quantum Leap between Art and Science" },
+        { id: "ySTg7wKvcM0", t: "Erik Curiel — Semi-Classical Gravity as Effective Field Theory and the Information-Loss Paradox" },
+        { id: "t8xImbLolK0", t: "Daniel Harlow — Quantum Error Correction and the Emergence of Spacetime [IV]" },
+        { id: "X5Hwp_OM8CM", t: "Eugene Chua — Do Black Holes Evaporate?" },
+        { id: "yTsaknz92pg", t: "Kiril Maltsev — Thermodynamics of Classical Schwarzschild Black Holes" },
+        { id: "9lSdSXN0Rv4", t: "Christian Wüthrich — Black Holes, Information, and Analogue Gravity" },
+        { id: "VVFgqIlOT5c", t: "Erik Curiel — Cosmic Censorship and Determinism in Semi-Classical Gravity" },
+      ],
       official: "https://sites.google.com/view/xxivurbinosummerschool/home"
     }
   ]
