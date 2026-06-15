@@ -27,7 +27,18 @@
       </a>
       <nav>
         ${link("index.html","Home","home")}
-        ${link("current.html","2026 Edition","current")}
+        <div class="navdrop${active==="current"?" active":""}">
+          <a class="navdrop-top" href="current.html">2026 Edition &#9662;</a>
+          <div class="navdrop-menu">
+            <a href="current.html">Overview</a>
+            <a href="2026-speakers.html">Speakers</a>
+            <a href="2026-program.html">Programme</a>
+            <a href="2026-participation.html">Call for Participations</a>
+            <a href="2026-participants.html">Participants</a>
+            <a href="2026-urbino.html">Urbino &amp; Accommodation</a>
+            <a href="2026-contacts.html">Contacts</a>
+          </div>
+        </div>
         ${link("lectures.html","Lecture Library","lectures")}
         ${link("speakers.html","Speakers","speakers")}
         ${link("editions.html","Past Editions","editions")}
@@ -286,11 +297,11 @@
         <dl class="info">
           <dt>Application</dt><dd>Submit a cover letter (motivation) and a CV via the official form.</dd>
           <dt>Call for abstracts</dt><dd>Selected young researchers present original work in a dedicated workshop (extended abstract ≤ 2000 words, prepared for blind review, plus a title page).</dd>
-          <dt>Deadline</dt><dd>${esc(current.deadline || "see the official page")}</dd>
+          <dt>Deadline</dt><dd>${esc(current.deadline || "see the 2026 Edition page")}</dd>
           <dt>Publication</dt><dd>Selected papers appear in a special issue of <em>Sophia</em>.</dd>
           <dt>Contact</dt><dd><a href="mailto:${S.email}">${S.email}</a></dd>
         </dl>
-        <div class="cta-row"><a class="btn btn-gold" href="${current.apply || current.official}" target="_blank" rel="noopener">Apply for ${current.year} ↗</a></div>
+        <div class="cta-row"><a class="btn btn-gold" href="2026-participation.html">Participation &amp; fees</a></div>
       </div>
     </div></section>
 
@@ -315,183 +326,206 @@
     </div></section>`;
   }
 
-  /* ---------- CURRENT EDITION (this year) ---------- */
-  function renderCurrent() {
-    chrome("current");
-    const program=[
+  /* ---------- 2026 EDITION (multi-page) ---------- */
+  const Y2026 = {
+    bios:[
+      {slug:"allori", init:"VA", n:"Valia Allori", a:"University of Bergamo", b:"Valia Allori studied physics and philosophy in Italy and the United States. She works on the foundations of quantum mechanics and statistical mechanics, aiming to understand how our best physical theory can answer general metaphysical questions about the nature of reality. She is currently Associate Professor at the University of Bergamo."},
+      {slug:"dibiagio", init:"AD", n:"Andrea Di Biagio", a:"IQOQI, Vienna", b:"Andrea Di Biagio obtained his PhD in Theoretical Physics at Sapienza University of Rome and is a postdoctoral researcher at the Institute for Quantum Optics and Quantum Information in Vienna. His research spans the conceptual aspects of low-energy quantum gravity experiments and the foundations of quantum theory, including Rovelli's relational interpretation."},
+      {slug:"laudisa", init:"FL", n:"Federico Laudisa", a:"University of Trento", b:"Federico Laudisa holds a PhD in Philosophy from the University of Florence. After teaching at Milan-Bicocca, Milan-San Raffaele and Bologna, he is full professor in Logic and Philosophy of Science at the University of Trento, where he coordinates the PhD School in European Cultures. He is a member of the Faculty of the John Bell Institute. His research focuses on the philosophy, history and foundations of quantum mechanics, with special attention to non-locality."},
+      {slug:"myrvold", init:"WM", n:"Wayne Myrvold", a:"University of Western Ontario", b:"Wayne Myrvold is professor of philosophy at the University of Western Ontario. His work focuses on philosophy of physics, including the foundations of quantum mechanics and thermodynamics. He is the subject editor for Quantum Mechanics for the Stanford Encyclopedia of Philosophy and the author of Beyond Chance and Credence (OUP 2021)."},
+      {slug:"ney", init:"AN", n:"Alyssa Ney", a:"LMU München", b:"Alyssa Ney is Professor of Metaphysics and Vice-Dean for Research at LMU Munich, and a member of the Munich Center for Quantum Science and Technology (MCQST). Her research focuses on fundamentality, the unity of science, and the interpretation of quantum theories. She holds an MS in Physics from UC Davis and a PhD in Philosophy from Brown University, and previously taught at UC Davis and Rochester."}
+    ],
+    program:[
       {day:"Day 1", date:"Monday, 15 June 2026", venue:"Aula Rossa, Palazzo Battiferri, Via Aurelio Saffi 42, Urbino", slots:[
-        {time:"9.30 - 10.00", t:"Introductory Remarks", who:"Giorgio Calcagnini (Chancellor, University of Urbino) &middot; Andrea Vicer&eacute; (University of Urbino) &middot; Vincenzo Fano (University of Urbino)"},
+        {time:"9.30 - 10.00", t:"Introductory Remarks", who:"Giorgio Calcagnini (Chancellor, University of Urbino) &middot; Andrea Viceré (University of Urbino) &middot; Vincenzo Fano (University of Urbino)"},
         {time:"10.00 - 12.00", t:"Introduction to Quantum Wave Functions", who:"Wayne Myrvold (University of Western Ontario)"},
         {time:"12.00 - 14.30", t:"Lunch break", who:""},
         {time:"14.30 - 16.30", t:"The Case for Realism about Quantum States", who:"Wayne Myrvold (University of Western Ontario)"},
         {time:"16.30 - 17.00", t:"Coffee break", who:""},
         {time:"17.00 - 19.00", t:"The Wave Function is as the Wave Function does (1)", who:"Valia Allori (University of Bergamo)"}
       ]},
-      {day:"Day 2", date:"Tuesday, 16 June 2026", venue:"Aula Rossa, Palazzo Battiferri, Via Aurelio Saffi 42, Urbino", slots:[
+      {day:"Day 2", date:"Tuesday, 16 June 2026", venue:"Aula Rossa, Palazzo Battiferri, Urbino", slots:[
         {time:"10.00 - 12.00", t:"The Wave Function is as the Wave Function does (2)", who:"Valia Allori (University of Bergamo)"},
         {time:"12.00 - 14.30", t:"Lunch break", who:""},
         {time:"14.30 - 16.30", t:"The wave function: a role for history (1)", who:"Federico Laudisa (University of Trento)"},
         {time:"16.30 - 17.00", t:"Coffee break", who:""},
         {time:"17.00 - 19.00", t:"The wave function: a role for history (2)", who:"Federico Laudisa (University of Trento)"}
       ]},
-      {day:"Day 3", date:"Wednesday, 17 June 2026", venue:"Aula Rossa, Palazzo Battiferri, Via Aurelio Saffi 42, Urbino", slots:[
-        {time:"10.00 - 12.00", t:"Arguments for Wave Function Realism", who:"Alyssa Ney (LMU M&uuml;nchen)"},
+      {day:"Day 3", date:"Wednesday, 17 June 2026", venue:"Aula Rossa, Palazzo Battiferri, Urbino", slots:[
+        {time:"10.00 - 12.00", t:"Arguments for Wave Function Realism", who:"Alyssa Ney (LMU München)"},
         {time:"12.00 - 14.30", t:"Lunch break", who:""},
-        {time:"14.30 - 16.30", t:"Student session &mdash; Mutual Ground: A Structural Realist Approach to Bohmian Mechanics; Disentangling the ontology and the epistemology problems of QM; Relativistic Localisation and Wave Function Realism", who:"Ada Koprululer (University of Barcelona) &middot; Margherita Moro (University of Leeds) &middot; Alexander Niederklapfer (LSE)"},
+        {time:"14.30 - 16.30", t:"Student session", who:"Ada Koprululer (Barcelona) &middot; Margherita Moro (Leeds) &middot; Alexander Niederklapfer (LSE)"},
         {time:"16.30 - 17.00", t:"Coffee break", who:""},
-        {time:"17.00 - 19.00", t:"Wave Functions or Density Matrices?", who:"Alyssa Ney (LMU M&uuml;nchen)"},
-        {time:"20.00", t:"Social Dinner", who:"A restaurant in Urbino (covered by the conference fee)"}
+        {time:"17.00 - 19.00", t:"Wave Functions or Density Matrices?", who:"Alyssa Ney (LMU München)"},
+        {time:"20.00", t:"Social Dinner", who:"A restaurant in Urbino (covered by the fee)"}
       ]},
-      {day:"Day 4", date:"Thursday, 18 June 2026", venue:"Aula Rossa, Palazzo Battiferri, Via Aurelio Saffi 42, Urbino", slots:[
+      {day:"Day 4", date:"Thursday, 18 June 2026", venue:"Aula Rossa, Palazzo Battiferri, Urbino", slots:[
         {time:"10.00 - 12.00", t:"QBism &sub; RQM &sub; EQM", who:"Andrea Di Biagio (IQOQI Vienna)"},
         {time:"12.00 - 14.30", t:"Lunch break", who:""},
         {time:"14.30 - 16.30", t:"QBism &sub; RQM &sub; EQM", who:"Andrea Di Biagio (IQOQI Vienna)"},
         {time:"16.30 - 16.40", t:"Closing Remarks", who:""},
-        {time:"16.40 - 17.00", t:"Coffee break", who:""},
-        {time:"17.00 - 17.30", t:"Measured Time and Celestial Predictions: Science, Calendars, and Instruments in the Age of Paolo of Middelburg", who:"Exhibition at the Church of San Girolamo &mdash; rare books from the University of Urbino collection on astronomy and timekeeping in the late Renaissance"}
+        {time:"17.00 - 17.30", t:"Measured Time and Celestial Predictions", who:"Exhibition at the Church of San Girolamo &mdash; rare books on astronomy and timekeeping in the late Renaissance"}
       ]},
-      {day:"Day 5", date:"Friday, 19 June 2026", venue:"Biblioteca Malatestiana, Sala Lignea, Piazza Maurizio Bufalini, Cesena", slots:[
-        {time:"10.00 - 12.00", t:"Guided Visit to the Palazzo Ducale", who:"Ticket &euro;12.00 &mdash; please register by emailing the organizers by 18 June 2026"},
-        {time:"17.00 - 19.00", t:"Processo Popolare: &laquo;Il caso della funzione d'onda&raquo;", who:"Giudice: Mario Alai &middot; Difesa: Gino Tarozzi, Marco Sanchioni &middot; Accusa: Niccol&ograve; Covoni, Andrea Di Biagio &middot; ed altri testimoni autorevoli"}
+      {day:"Day 5", date:"Friday, 19 June 2026", venue:"Biblioteca Malatestiana, Sala Lignea, Cesena", slots:[
+        {time:"10.00 - 12.00", t:"Guided Visit to the Palazzo Ducale", who:"Ticket &euro;12 &mdash; register by emailing the organizers by 18 June 2026"},
+        {time:"17.00 - 19.00", t:"Processo Popolare: &laquo;Il caso della funzione d'onda&raquo;", who:"Giudice: Mario Alai &middot; Difesa: Gino Tarozzi, Marco Sanchioni &middot; Accusa: Niccolò Covoni, Andrea Di Biagio"}
       ]}
-    ];
-    const bios=[
-      {n:"Valia Allori", a:"University of Bergamo", b:"Valia Allori studied physics and philosophy first in Italy and then in the United States. She has worked on the foundations of quantum mechanics and of statistical mechanics, aiming to understand how our best physical theory can answer general metaphysical questions about the nature of reality. She is currently Associate Professor at the University of Bergamo."},
-      {n:"Andrea Di Biagio", a:"Institute of Quantum Optics and Quantum Information, Vienna", b:"Andrea Di Biagio obtained his PhD in Theoretical Physics at Sapienza University of Rome and is a postdoctoral researcher at IQOQI Vienna. His research spans theoretical and conceptual aspects of low-energy quantum gravity experiments and the foundations of quantum theory, including Rovelli's relational interpretation."},
-      {n:"Federico Laudisa", a:"University of Trento", b:"Federico Laudisa holds a PhD in Philosophy from the University of Florence. After teaching at Milan-Bicocca, Milan-San Raffaele and Bologna, he is full professor in Logic and Philosophy of Science at the University of Trento, where he coordinates the PhD School in European Cultures. He is a member of the Faculty of the John Bell Institute. His research focuses on the philosophy, history and foundations of quantum mechanics, with special attention to non-locality."},
-      {n:"Wayne Myrvold", a:"University of Western Ontario", b:"Wayne Myrvold is professor in the department of philosophy at the University of Western Ontario. His work focuses on philosophy of physics, including the foundations of quantum mechanics and thermodynamics. He is the subject editor for Quantum Mechanics for the Stanford Encyclopedia of Philosophy, and the author of Beyond Chance and Credence (OUP 2021)."},
-      {n:"Alyssa Ney", a:"Ludwig-Maximilians-Universit&auml;t M&uuml;nchen", b:"Alyssa Ney is Professor of Metaphysics and Vice-Dean for Research at LMU Munich, and a member of the Munich Center for Quantum Science and Technology (MCQST). Her research focuses on fundamentality, the unity of science, and the interpretation of quantum theories. She holds an MS in Physics from UC Davis and a PhD in Philosophy from Brown University; she previously taught at UC Davis and Rochester."}
-    ];
-    const participants=["Anna Gabetti (Politecnico Torino)","Dorian Schiffer (TU Vienna)","Silvia Miloso (University of Florence)","Sofia Di Pirro (Pontificia Universit&agrave; Lateranense / Perugia)","Roberta Serafini (University of Roma 3)","Arianna Laura Savelli (University of Trento)","Margherita Moro (University of Leeds)","Damiano Santoferrara (CEA Saclay, Paris)","Floris Eskens (University of Oslo)","Charlene Laffond (University of Vienna)","Joppe Widstam (MPI for the Physics of Complex Systems)","Simon Peter Leban (Ljubljana University)","Paolo Di Sia (University of Padua)","Giulia Ferrigno","Gianluca Bona (IISS Gandhi)","Sauro Niccolai (IISS G. Peano)","Anna Michelini (University of Trento)","Alessandro Mengoni (University of Torino)","Paolo Faglia (University of Oxford)","Niamh Marquess-Bowler (University of Bristol)","Nina Mazurewicz (University of Warsaw)","Ada Koprululer (University of Barcelona)","Piergiuseppe Sancetta (University of Edinburgh)","Giorgia Moioli (University of Milan)","Berfu Nacar (Yeditepe University)","Carla Torn&eacute; Pujol (University of Barcelona)","Giulia Romanini (University of Trento)","C&eacute;leste M.E. Hogan (Simon's Rock at Bard College)","Aric Hackebill (University of Vermont)","Jessica Pohlmann (Rutgers University)","John Stark (University of Western Ontario)","Xingyu Lyu (University of Mannheim)","Giovanni Rizzotto (Universit&agrave; della Svizzera Italiana)","Anna Mazzocchi (Copenhagen University)","Francisco Pipa (University of Queensland)","Cedric Igelspacher (LMU)","Elias Carlini (University of Milan)","Alex Gough (University of Birmingham)","Alexander Niederklapfer (LSE)","Emily Patterson (University of Toronto)","Alessandro Spizzico (Universit&agrave; della Svizzera Italiana)","Jordan Grujic (University of Pittsburgh)","Davide Romano (University of Verona)","Dario Aversa (University of Foggia)","Daniele Pizzocaro (UC Louvain)","Valentina Ruggiero (University of Graz)","Mia Nascimben (University of Bologna)","Alberto Bucci (University of Urbino)"];
-    const hotels=[
-      {n:"Bonconte ****", d:"Via delle Mura 28 &middot; 0722.2463 &middot; bonconte@viphotels.it"},
-      {n:"Italia ***", d:"Corso Garibaldi 32 &middot; 0722.2701 &middot; info@albergo-italia-urbino.it"},
-      {n:"San Domenico ****", d:"Piazza Rinascimento 3 &middot; 0722.2626 &middot; sandomenico@viphotels.it"},
-      {n:"Dei Duchi ***", d:"Via Dini 12 &middot; 0722.328226"},
-      {n:"Frontespino ***", d:"Loc. Tufo, Via Fontespino 8/10 &middot; 0722.57331"},
-      {n:"La Meridiana ***", d:"Loc. Trasanni, Via Urbinate 43 &middot; 0722.320169"},
-      {n:"Nen&egrave; ***", d:"Loc. Crocicchia, Via Biancalana 39 &middot; 0722.2996"},
-      {n:"Raffaello ***", d:"Via Santa Margherita 40 &middot; 0722.4784"},
-      {n:"La Tortorina ***", d:"Via Ottaviano Petrucci 4 &middot; 0722.327715"},
-      {n:"Mamiani ****", d:"Via Bernini 6 &middot; 0722.322309"}
-    ];
-    const bnbs=[
+    ],
+    participants:["Anna Gabetti (Politecnico Torino)","Dorian Schiffer (TU Vienna)","Silvia Miloso (Florence)","Sofia Di Pirro (Lateranense / Perugia)","Roberta Serafini (Roma 3)","Arianna Laura Savelli (Trento)","Margherita Moro (Leeds)","Damiano Santoferrara (CEA Saclay)","Floris Eskens (Oslo)","Charlene Laffond (Vienna)","Joppe Widstam (MPI Complex Systems)","Simon Peter Leban (Ljubljana)","Paolo Di Sia (Padua)","Giulia Ferrigno","Gianluca Bona (IISS Gandhi)","Sauro Niccolai (IISS G. Peano)","Anna Michelini (Trento)","Alessandro Mengoni (Torino)","Paolo Faglia (Oxford)","Niamh Marquess-Bowler (Bristol)","Nina Mazurewicz (Warsaw)","Ada Koprululer (Barcelona)","Piergiuseppe Sancetta (Edinburgh)","Giorgia Moioli (Milan)","Berfu Nacar (Yeditepe)","Carla Torné Pujol (Barcelona)","Giulia Romanini (Trento)","Céleste M.E. Hogan (Bard College)","Aric Hackebill (Vermont)","Jessica Pohlmann (Rutgers)","John Stark (Western Ontario)","Xingyu Lyu (Mannheim)","Giovanni Rizzotto (USI)","Anna Mazzocchi (Copenhagen)","Francisco Pipa (Queensland)","Cedric Igelspacher (LMU)","Elias Carlini (Milan)","Alex Gough (Birmingham)","Alexander Niederklapfer (LSE)","Emily Patterson (Toronto)","Alessandro Spizzico (USI)","Jordan Grujic (Pittsburgh)","Davide Romano (Verona)","Dario Aversa (Foggia)","Daniele Pizzocaro (UC Louvain)","Valentina Ruggiero (Graz)","Mia Nascimben (Bologna)","Alberto Bucci (Urbino)"],
+    hotels:[
+      {n:"Bonconte ★★★★", d:"Via delle Mura 28 &middot; 0722.2463 &middot; bonconte@viphotels.it"},
+      {n:"San Domenico ★★★★", d:"Piazza Rinascimento 3 &middot; 0722.2626 &middot; sandomenico@viphotels.it"},
+      {n:"Mamiani ★★★★", d:"Via Bernini 6 &middot; 0722.322309"},
+      {n:"Italia ★★★", d:"Corso Garibaldi 32 &middot; 0722.2701 &middot; info@albergo-italia-urbino.it"},
+      {n:"Dei Duchi ★★★", d:"Via Dini 12 &middot; 0722.328226"},
+      {n:"Raffaello ★★★", d:"Via Santa Margherita 40 &middot; 0722.4784"},
+      {n:"La Meridiana ★★★", d:"Loc. Trasanni, Via Urbinate 43 &middot; 0722.320169"},
+      {n:"Nenè ★★★", d:"Loc. Crocicchia, Via Biancalana 39 &middot; 0722.2996"},
+      {n:"La Tortorina ★★★", d:"Via Ottaviano Petrucci 4 &middot; 0722.327715"},
+      {n:"Frontespino ★★★", d:"Loc. Tufo, Via Fontespino 8/10 &middot; 0722.57331"}
+    ],
+    bnbs:[
       {n:"Abaco &ndash; Alma Domus", d:"Via Mainardi 1 &middot; 0722.4311 &middot; almadomus@gmail.com"},
-      {n:"Al Nido", d:"SP Montefabbri 32 &middot; 346.0917264"},
-      {n:"A C&agrave; Maggio", d:"Via S. Maria di Pomonte 21"},
-      {n:"Acacia", d:"Via S.P. Feltresca 63 &middot; 0722.2082"},
-      {n:"Cipressi", d:"Via B. Mainardo 3 &middot; 0722.4311"},
-      {n:"Alveape", d:"Loc. S. Marino, Via Montebagno 8 &middot; 0722.340212"},
       {n:"Aquilone", d:"Via Gramsci 22 &middot; 0722.328154"},
       {n:"Il Campo degli Olivi", d:"Via Colonna 7/c &middot; 0722.327656"},
-      {n:"C&agrave; Giovanni", d:"Via S. Lorenzo in Solfinelli 5 &middot; 347.5844707"},
-      {n:"C&agrave; Lajala", d:"Loc. San Marino, Via Sant'Eufemia 5 &middot; 0722.53179"},
-      {n:"C&agrave; Il Governatore", d:"Loc. Trasanni, SP Montefabbri 30/32 &middot; 0722.327060"},
-      {n:"Il Giuggiolo", d:"0722.2930 &middot; 349.5706290"},
-      {n:"Il Monte di Sant'Eufemia", d:"Loc. San Marino, Via Sant'Eufemia 1 &middot; 0722.53557"},
-      {n:"Il Posto delle Fate", d:"Via Duchi di Montefeltro 26 &middot; 0722.345176"},
-      {n:"L'Oasi", d:"Loc. Tufo, Via del Cardellino 2 &middot; 0722.339004"},
       {n:"Il Cortegiano", d:"Via Veterani 1 int. C &middot; 0722.2278"},
       {n:"L'Orologio", d:"Via dell'Orologio di Sotto 11 &middot; 0722.327071"},
-      {n:"Il Sogno di Gaia", d:"Via Molinaccio 1 &middot; 0722.345413"},
+      {n:"L'Oasi", d:"Loc. Tufo, Via del Cardellino 2 &middot; 0722.339004"},
+      {n:"Il Posto delle Fate", d:"Via Duchi di Montefeltro 26 &middot; 0722.345176"},
+      {n:"Cà Lajala", d:"Loc. San Marino, Via Sant'Eufemia 5 &middot; 0722.53179"},
+      {n:"Cà Il Governatore", d:"Loc. Trasanni, SP Montefabbri 30/32 &middot; 0722.327060"},
       {n:"Monte delle Allodole", d:"Via Ca' Bergamo 6 &middot; 0722.52614"},
       {n:"Montefeltro", d:"Loc. Schieti, Via del Forno 8 &middot; 0722.59315"},
-      {n:"Raffaello (B&amp;B)", d:"Via Virgili 13 &middot; 328.1169594"},
       {n:"Santa Maria delle Grazie", d:"Loc. Forcuini, SP Montefabbri 100 &middot; 348.3621692"}
-    ];
-    const slot=x=>`<div class="slot"><div class="t">${x.time}</div><div><b>${x.t}</b>${x.who?`<div class="who">${x.who}</div>`:""}</div></div>`;
-    const dayBlock=d=>`<div class="prog-day"><h3>${d.day}</h3><div class="when">${d.date} &middot; ${d.venue}</div>${d.slots.map(slot).join("")}</div>`;
-    const accCard=x=>`<div class="acc"><b>${x.n}</b><span class="d">${x.d}</span></div>`;
-    byId("app").innerHTML=`
-    <section class="hero" style="padding:64px 0 22px"><div class="wrap">
-      <span class="eyebrow">${current.roman} Edition${current.status==="current"?" &middot; in progress":""} &middot; ${esc(current.dateRange)}</span>
-      <h1 style="font-size:clamp(2rem,4.6vw,3rem)">${esc(current.theme)}</h1>
-      <p class="lead">${esc(current.blurb)}</p>
-      <div class="cta-row">
-        <a class="btn btn-gold" href="${current.official}" target="_blank" rel="noopener">Official edition page &#8599;</a>
-        <a class="btn btn-ghost" href="lectures.html">Lecture Library</a>
+    ]
+  };
+
+  function c26hero() {
+    return `
+    <section class="hero c26hero" style="background-image:url('assets/art/hero-cosmos.svg')"><div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">${current.roman} Edition${current.status==="current"?" &middot; in progress":""} &middot; ${esc(current.dateRange)}</span>
+        <h1>${esc(current.theme)}</h1>
+        <p class="lead">XXIX International Philosophy of Physics Summer School &middot; University of Urbino</p>
       </div>
-    </div></section>
+      <figure class="hero-fig"><img src="assets/art/wave-function.svg" alt="${esc(current.tag)}"><figcaption>${esc(current.tag)}</figcaption></figure>
+    </div></section>`;
+  }
+  function c26nav(active) {
+    const items=[["current.html","Overview","home"],["2026-speakers.html","Speakers","speakers"],["2026-program.html","Programme","program"],["2026-participation.html","Call for Participations","participation"],["2026-participants.html","Participants","participants"],["2026-urbino.html","Urbino &amp; Accommodation","urbino"],["2026-contacts.html","Contacts","contacts"]];
+    return `<nav class="subnav"><div class="wrap">${items.map(([h,l,k])=>`<a href="${h}"${k===active?' class="on"':''}>${l}</a>`).join("")}</div></nav>`;
+  }
+  const spkCard=p=>`
+    <div class="spk-card">
+      <div class="spk-photo">
+        <span class="spk-mono">${p.init}</span>
+        <img src="assets/speakers/${p.slug}.jpg" alt="${esc(p.n)}" loading="lazy" onerror="this.remove()">
+      </div>
+      <div class="spk-body"><h3>${esc(p.n)}</h3><div class="aff">${p.a}</div><p>${p.b}</p></div>
+    </div>`;
+  const slot=x=>`<div class="slot"><div class="t">${x.time}</div><div><b>${x.t}</b>${x.who?`<div class="who">${x.who}</div>`:""}</div></div>`;
+  const dayBlock=d=>`<div class="prog-day"><h3>${d.day}</h3><div class="when">${d.date} &middot; ${d.venue}</div>${d.slots.map(slot).join("")}</div>`;
+  const accCard=x=>`<div class="acc"><b>${x.n}</b><span class="d">${x.d}</span></div>`;
 
-    <nav class="subnav"><div class="wrap">
-      <a href="#overview">Overview</a><a href="#speakers">Speakers</a><a href="#program">Programme</a>
-      <a href="#participation">Participation</a><a href="#participants">Participants</a>
-      <a href="#travel">Getting there</a><a href="#accommodation">Accommodation</a><a href="#contacts">Contacts</a>
-    </div></nav>
-
-    <section id="overview" class="block"><div class="wrap">
-      <div class="section-head"><div class="kicker">Overview</div><h2>History and Philosophy of the Wave Function</h2></div>
-      <p>The XXIX International Philosophy of Physics Summer School of the University of Urbino addresses a crucial topic at the intersection of physics and philosophy: the epistemological and ontological status of the wave function. The School explores both the physical and conceptual dimensions of one of the central entities of quantum theory &mdash; examining the mathematical role of the wave function, its historical development within quantum mechanics, and contemporary philosophical debates concerning its interpretation and ontology.</p>
-      <p>This year's edition is part of the broader celebrations marking the centenary of the birth of quantum mechanics, hosted across European institutions, and aims to offer an original contribution to this collective reflection on the genesis and meaning of the theory. The programme combines plenary lectures with seminars and student presentations, fostering dialogue among physicists and philosophers, PhD students and early-career researchers.</p>
-      <dl class="info">
-        <dt>Dates</dt><dd>${esc(current.dateRange)}</dd>
-        <dt>Main venue</dt><dd>Aula Rossa, Palazzo Battiferri, Via Aurelio Saffi 42, Urbino</dd>
+  function renderCurrentHome() {
+    chrome("current");
+    byId("app").innerHTML = c26hero() + c26nav("home") + `
+    <section class="block"><div class="wrap">
+      <div class="section-head"><div class="kicker">The 2026 edition</div><h2>History and Philosophy of the Wave Function</h2></div>
+      <p>The XXIX International Philosophy of Physics Summer School of the University of Urbino addresses a crucial topic at the intersection of physics and philosophy: the epistemological and ontological status of the wave function. The School explores both the physical and conceptual dimensions of one of the central entities of quantum theory &mdash; its mathematical role, its historical development within quantum mechanics, and contemporary debates over its interpretation and ontology.</p>
+      <p>This year's edition is part of the worldwide celebrations marking the centenary of quantum mechanics. The programme combines plenary lectures with seminars and student presentations, fostering dialogue among physicists and philosophers, PhD students and early-career researchers.</p>
+      <div class="meta">
+        <div><b>${esc(current.dateRange)}</b></div>
+        <div><b>Palazzo Battiferri</b>, Urbino</div>
+        <div><b>5</b> plenary speakers</div>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="2026-program.html">See the programme</a>
+        <a class="btn btn-ghost" href="2026-speakers.html">Meet the speakers</a>
+      </div>
+      <dl class="info" style="margin-top:26px">
         <dt>Director</dt><dd>Vincenzo Fano (University of Urbino)</dd>
-        <dt>Organizers</dt><dd>Marco Sanchioni (Sophia University Institute) &middot; Niccol&ograve; Covoni (University of Urbino / USI)</dd>
+        <dt>Organizers</dt><dd>Marco Sanchioni (Sophia University Institute) &middot; Niccolò Covoni (University of Urbino / USI)</dd>
         <dt>Publication</dt><dd>Selected workshop papers appear in a special issue of <a href="https://journal.sophiauniversity.org/" target="_blank" rel="noopener"><em>Sophia</em></a></dd>
       </dl>
-    </div></section>
-
-    <section id="speakers" class="block"><div class="wrap">
-      <div class="section-head"><div class="kicker">Speakers</div><h2>Plenary speakers</h2></div>
-      ${bios.map(p=>`<div class="bio"><h3>${p.n}</h3><div class="aff">${p.a}</div><p>${p.b}</p></div>`).join("")}
-    </div></section>
-
-    <section id="program" class="block"><div class="wrap">
+    </div></section>`;
+  }
+  function renderCurrentSpeakers() {
+    chrome("current");
+    byId("app").innerHTML = c26hero() + c26nav("speakers") + `
+    <section class="block"><div class="wrap">
+      <div class="section-head"><div class="kicker">Speakers</div><h2>Plenary speakers</h2>
+        <p>Five internationally renowned speakers across physics and philosophy.</p></div>
+      <div class="spk-grid">${Y2026.bios.map(spkCard).join("")}</div>
+    </div></section>`;
+  }
+  function renderCurrentProgram() {
+    chrome("current");
+    byId("app").innerHTML = c26hero() + c26nav("program") + `
+    <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Programme</div><h2>Five days in Urbino</h2>
-        <p>All times are CEST (UTC+2).</p></div>
-      ${program.map(dayBlock).join("")}
-    </div></section>
-
-    <section id="participation" class="block"><div class="wrap">
-      <div class="section-head"><div class="kicker">Participation</div><h2>Application, abstracts &amp; fee</h2>
+        <p>All times are CEST (UTC+2). Main venue: Palazzo Battiferri.</p></div>
+      ${Y2026.program.map(dayBlock).join("")}
+    </div></section>`;
+  }
+  function renderCurrentParticipation() {
+    chrome("current");
+    byId("app").innerHTML = c26hero() + c26nav("participation") + `
+    <section class="block"><div class="wrap">
+      <div class="section-head"><div class="kicker">Call for Participations</div><h2>Application, abstracts &amp; fee</h2>
         <p>Applications for the ${current.year} edition are now closed &mdash; the School is in progress.</p></div>
-      <div class="edition">
-        <dl class="info">
-          <dt>Application</dt><dd>Cover letter (motivation) and a CV. Deadline was 29 March 2026; acceptance notified by 10 April 2026.</dd>
-          <dt>Call for abstracts</dt><dd>Four young researchers present original papers in a dedicated workshop. Extended abstract (&le; 2000 words, prepared for blind review) plus a title page.</dd>
-          <dt>Fee</dt><dd>&euro;100 contribution to SILFS &mdash; covers attendance, school materials, social dinner and coffee breaks. Accommodation, lunch and dinner are not included.</dd>
-          <dt>Social dinner</dt><dd>Wednesday 17 June, at a restaurant in Urbino, covered by the fee. All participants are warmly invited.</dd>
-        </dl>
-      </div>
-    </div></section>
-
-    <section id="participants" class="block"><div class="wrap">
+      <dl class="info">
+        <dt>Application</dt><dd>Cover letter (motivation) and a CV. Deadline was 29 March 2026; acceptance notified by 10 April 2026.</dd>
+        <dt>Call for abstracts</dt><dd>Four young researchers present original papers in a dedicated workshop. Extended abstract (&le; 2000 words, prepared for blind review) plus a title page.</dd>
+        <dt>Fee</dt><dd>&euro;100 contribution to SILFS &mdash; covers attendance, school materials, social dinner and coffee breaks. Accommodation, lunch and dinner are not included.</dd>
+        <dt>Social dinner</dt><dd>Wednesday 17 June, at a restaurant in Urbino, covered by the fee. All participants are warmly invited.</dd>
+        <dt>Publication</dt><dd>Selected papers appear in a special issue of <a href="https://journal.sophiauniversity.org/" target="_blank" rel="noopener"><em>Sophia</em></a>.</dd>
+      </dl>
+    </div></section>`;
+  }
+  function renderCurrentParticipants() {
+    chrome("current");
+    byId("app").innerHTML = c26hero() + c26nav("participants") + `
+    <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Participants</div><h2>Selected participants</h2>
-        <p>${participants.length} young researchers from across Europe and beyond.</p></div>
-      <div class="plist">${participants.map(p=>`<div>${p}</div>`).join("")}</div>
-    </div></section>
-
-    <section id="travel" class="block"><div class="wrap">
+        <p>${Y2026.participants.length} young researchers from across Europe and beyond.</p></div>
+      <div class="plist">${Y2026.participants.map(p=>`<div>${p}</div>`).join("")}</div>
+    </div></section>`;
+  }
+  function renderCurrentUrbino() {
+    chrome("current");
+    byId("app").innerHTML = c26hero() + c26nav("urbino") + `
+    <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Getting there</div><h2>How to reach Urbino</h2></div>
       <dl class="info">
-        <dt>By air</dt><dd><b>Ancona</b>, <b>Bologna</b> or <b>Rome</b> airports. From Ancona or Bologna, take a bus to the train station, a train to Pesaro, then a bus to Urbino. From Rome, the Adriabus coach connects Roma Tiburtina to Urbino. Get off at &ldquo;Urbino &mdash; parcheggio Santa Lucia&rdquo;.</dd>
-        <dt>By train</dt><dd>The nearest station is <b>Pesaro</b> (Trenitalia). From Pesaro, take a bus to Urbino and get off at &ldquo;Urbino &mdash; parcheggio Santa Lucia&rdquo;.</dd>
-        <dt>By car</dt><dd>From the south: exit the A14 at &ldquo;Fano&rdquo;, then follow &ldquo;Urbino&rdquo;. From the north: exit at &ldquo;Pesaro e Urbino&rdquo;, then follow &ldquo;Urbino&rdquo;. Park at &ldquo;Parcheggio Santa Lucia&rdquo;.</dd>
-        <dt>To Palazzo Battiferri</dt><dd>From Parcheggio Santa Lucia, take the two elevators to Porta Santa Lucia; the Palazzo is about 800 m inside the old town.</dd>
+        <dt>By air</dt><dd><b>Ancona</b>, <b>Bologna</b> or <b>Rome</b> airports. From Ancona or Bologna take a bus to the train station, a train to Pesaro, then a bus to Urbino. From Rome, the Adriabus coach connects Roma Tiburtina to Urbino. Get off at &ldquo;Urbino &mdash; parcheggio Santa Lucia&rdquo;.</dd>
+        <dt>By train</dt><dd>Nearest station: <b>Pesaro</b> (Trenitalia). From Pesaro take a bus to Urbino, getting off at &ldquo;Urbino &mdash; parcheggio Santa Lucia&rdquo;.</dd>
+        <dt>By car</dt><dd>From the south: exit the A14 at &ldquo;Fano&rdquo;. From the north: exit at &ldquo;Pesaro e Urbino&rdquo;. Then follow &ldquo;Urbino&rdquo; and park at &ldquo;Parcheggio Santa Lucia&rdquo;.</dd>
+        <dt>To Palazzo Battiferri</dt><dd>From Parcheggio Santa Lucia take the two elevators to Porta Santa Lucia; the Palazzo is about 800 m inside the old town.</dd>
       </dl>
     </div></section>
-
-    <section id="accommodation" class="block"><div class="wrap">
+    <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Accommodation</div><h2>Where to sleep in Urbino</h2>
         <p>A selection of hotels and B&amp;Bs. Accommodation is not included in the fee.</p></div>
       <h3 style="margin:6px 0 12px">Hotels</h3>
-      <div class="acc-grid">${hotels.map(accCard).join("")}</div>
+      <div class="acc-grid">${Y2026.hotels.map(accCard).join("")}</div>
       <h3 style="margin:26px 0 12px">Bed &amp; Breakfasts</h3>
-      <div class="acc-grid">${bnbs.map(accCard).join("")}</div>
-      <p style="color:var(--muted);margin-top:18px;font-size:.92rem">For the Day 5 excursion in Cesena and the full accommodation list, see the <a href="${current.official}/urbino/where-to-sleep" target="_blank" rel="noopener">official page</a>.</p>
-    </div></section>
-
-    <section id="contacts" class="block"><div class="wrap">
+      <div class="acc-grid">${Y2026.bnbs.map(accCard).join("")}</div>
+    </div></section>`;
+  }
+  function renderCurrentContacts() {
+    chrome("current");
+    byId("app").innerHTML = c26hero() + c26nav("contacts") + `
+    <section class="block"><div class="wrap">
       <div class="section-head"><div class="kicker">Contacts</div><h2>Get in touch</h2></div>
       <dl class="info">
         <dt>Director</dt><dd>Prof. Vincenzo Fano (DiSPeA, University of Urbino)</dd>
-        <dt>Organizers</dt><dd>Niccol&ograve; Covoni (University of Urbino / USI) &middot; Marco Sanchioni (Sophia University Institute)</dd>
+        <dt>Organizers</dt><dd>Niccolò Covoni (University of Urbino / USI) &middot; Marco Sanchioni (Sophia University Institute)</dd>
         <dt>Email</dt><dd><a href="mailto:${S.email}">${S.email}</a></dd>
-        <dt>Official site</dt><dd><a href="${current.official}" target="_blank" rel="noopener">${current.official} &#8599;</a></dd>
+        <dt>Lectures</dt><dd><a href="${S.channel}" target="_blank" rel="noopener">YouTube channel &#8599;</a></dd>
       </dl>
     </div></section>`;
   }
 
-  window.UPSS = { renderHome, renderCurrent, renderLectures, renderSpeakers, renderEditions, renderAbout };
+  window.UPSS = { renderHome, renderCurrentHome, renderCurrentSpeakers, renderCurrentProgram, renderCurrentParticipation, renderCurrentParticipants, renderCurrentUrbino, renderCurrentContacts, renderLectures, renderSpeakers, renderEditions, renderAbout };
 })();

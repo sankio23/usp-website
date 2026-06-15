@@ -210,3 +210,25 @@ footer .fine { margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--
 .acc b{display:block;margin-bottom:3px}
 .acc .d{color:var(--muted)}
 @media(max-width:640px){.plist{columns:1}.acc-grid{grid-template-columns:1fr}.slot{grid-template-columns:1fr}}
+
+/* ---- 2026 nav dropdown ---- */
+.navdrop{position:relative;display:inline-flex;align-items:center}
+.navdrop-top{color:inherit;text-decoration:none}
+.navdrop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:8px;background:#0b0b0b;border:1px solid var(--line);border-radius:12px;min-width:230px;padding:7px;display:none;flex-direction:column;z-index:60;box-shadow:var(--shadow)}
+.navdrop:hover .navdrop-menu{display:flex}
+.navdrop-menu a{padding:9px 13px;color:var(--ink-soft);text-decoration:none;font-size:.9rem;border-radius:7px;white-space:nowrap}
+.navdrop-menu a:hover{background:var(--panel-2);color:#fff}
+.navdrop.active>.navdrop-top{color:#fff}
+.subnav a.on{color:#fff}
+.subnav a.on::after{content:"";display:block;height:2px;background:#fff;margin-top:5px;border-radius:2px}
+/* ---- speaker cards ---- */
+.c26hero{background-size:cover;background-position:center}
+.spk-grid{display:grid;gap:18px}
+.spk-card{display:flex;gap:20px;align-items:flex-start;background:var(--panel);border:1px solid var(--line-soft);border-radius:16px;padding:20px 22px}
+.spk-photo{position:relative;width:104px;height:104px;flex:0 0 auto;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 30% 20%,#2a2a2a,#000)}
+.spk-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.spk-mono{font-size:1.7rem;font-weight:700;color:#fff;letter-spacing:.06em}
+.spk-body h3{margin:2px 0 2px}
+.spk-body .aff{color:var(--ink-soft);font-size:.9rem;margin-bottom:10px}
+.spk-body p{color:var(--muted);margin:0;font-size:.95rem}
+@media(max-width:600px){.spk-card{flex-direction:column;align-items:center;text-align:center}.spk-body .aff{margin-bottom:8px}}
