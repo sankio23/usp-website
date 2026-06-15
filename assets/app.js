@@ -403,7 +403,7 @@
     <div class="spk-card">
       <div class="spk-photo">
         <span class="spk-mono">${p.init}</span>
-        <img src="assets/speakers/${p.slug}.jpg" alt="${esc(p.n)}" loading="lazy" onerror="this.remove()">
+        <img src="assets/speakers/${p.slug}.jpg" alt="${esc(p.n)}" onerror="this.remove()">
       </div>
       <div class="spk-body"><h3>${esc(p.n)}</h3><div class="aff">${p.a}</div><p>${p.b}</p></div>
     </div>`;
@@ -522,8 +522,14 @@
   (function(){
     const app = document.getElementById('app'); if(!app) return;
     if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:0.05, rootMargin:'0px 0px -24px 0px' });
     const SEL = '.section-head, .card, .tile, .vcard2, .spk-card, .prog-day, .acc, .bio, .feature, dl.info, .edition, .filters, .vgrid2 > *, .plist';
+    function check(){
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      app.querySelectorAll('.reveal:not(.in)').forEach(el=>{
+        const r = el.getBoundingClientRect();
+        if(r.top < h*0.92 && r.bottom > 0) el.classList.add('in');
+      });
+    }
     function tag(){
       try{
         let i=0, last=null;
@@ -531,15 +537,18 @@
           if(el.dataset.rev) return; el.dataset.rev='1';
           const p=el.parentElement; if(p!==last){ i=0; last=p; }
           el.classList.add('reveal'); el.style.transitionDelay=Math.min(i*45,300)+'ms'; i++;
-          io.observe(el);
         });
       }catch(e){}
+      setTimeout(check,50);
     }
     new MutationObserver(tag).observe(app,{childList:true});
+    window.addEventListener('scroll', check, {passive:true});
+    window.addEventListener('resize', check);
     tag();
     document.addEventListener('DOMContentLoaded', tag);
     window.addEventListener('load', tag);
-    setTimeout(tag,200); setTimeout(tag,600);
+    setTimeout(tag,150); setTimeout(tag,500);
+    setTimeout(()=>{ app.querySelectorAll('.reveal:not(.in)').forEach(el=>el.classList.add('in')); }, 1800);
   })();
 
   window.UPSS = { renderHome, renderCurrentHome, renderCurrentSpeakers, renderCurrentProgram, renderCurrentParticipation, renderCurrentParticipants, renderCurrentUrbino, renderCurrentContacts, renderLectures, renderSpeakers, renderEditions, renderAbout };
