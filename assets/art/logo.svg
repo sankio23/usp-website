@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 96" role="img" aria-label="UP2S2 — Urbino Philosophy of Physics Summer School">
+  <style>
+    .word { font-family: "Arial Black", "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 900; }
+  </style>
+  <text class="word" x="6" y="74" font-size="78" fill="currentColor" letter-spacing="-3">
+    <tspan>UP</tspan><tspan font-size="36" dy="-34">2</tspan><tspan dy="34">S</tspan><tspan font-size="36" dy="-34">2</tspan>
+  </text>
+</svg>

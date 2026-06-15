@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Accelerating expansion of space">
+  <defs>
+    <radialGradient id="bg4" cx="50%" cy="50%" r="70%"><stop offset="0%" stop-color="#000000"/><stop offset="100%" stop-color="#000000"/></radialGradient>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg4)"/>
+  <g fill="none" stroke-width="2">
+    <circle cx="400" cy="225" r="60" stroke="#ffffff" opacity=".9"/>
+    <circle cx="400" cy="225" r="110" stroke="#ffffff" opacity=".6"/>
+    <circle cx="400" cy="225" r="165" stroke="#9aa0aa" opacity=".45"/>
+    <circle cx="400" cy="225" r="215" stroke="#cfd2da" opacity=".3"/>
+  </g>
+  <circle cx="400" cy="225" r="70" fill="url(#core)"/>
+  <g stroke="#ffffff" stroke-width="2" opacity=".8">
+    <g id="ar"><line x1="400" y1="150" x2="400" y2="120"/><path d="M394 130 L400 118 L406 130" fill="none"/></g>
+    <use href="#ar" transform="rotate(60 400 225)"/><use href="#ar" transform="rotate(120 400 225)"/>
+    <use href="#ar" transform="rotate(180 400 225)"/><use href="#ar" transform="rotate(240 400 225)"/><use href="#ar" transform="rotate(300 400 225)"/>
+  </g>
+  <g fill="#fff" opacity=".7"><circle cx="80" cy="80" r="1.6"/><circle cx="720" cy="100" r="1.4"/><circle cx="120" cy="380" r="1.3"/><circle cx="700" cy="370" r="1.5"/></g>
+</svg>
