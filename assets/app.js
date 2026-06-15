@@ -101,9 +101,21 @@
 
     <section class="block"><div class="wrap">
       <div class="tiles">
-        <a class="tile" href="lectures.html"><span class="tnum">01</span><h3>Lecture Library</h3></a>
-        <a class="tile" href="speakers.html"><span class="tnum">02</span><h3>Speakers</h3></a>
-        <a class="tile" href="editions.html"><span class="tnum">03</span><h3>Past Editions</h3></a>
+        <a class="tile" href="lectures.html" style="--img:url('assets/art/hero-cosmos.svg')">
+          <span class="tile-art"></span>
+          <span class="tile-cap"><b>Lecture Library</b><span class="tile-sub">Every talk, by year &amp; speaker</span></span>
+          <span class="tile-go">&#8599;</span>
+        </a>
+        <a class="tile" href="speakers.html" style="--img:url('assets/art/wave-function.svg')">
+          <span class="tile-art"></span>
+          <span class="tile-cap"><b>Speakers</b><span class="tile-sub">Physicists &amp; philosophers</span></span>
+          <span class="tile-go">&#8599;</span>
+        </a>
+        <a class="tile" href="editions.html" style="--img:url('assets/art/dark-matter.svg')">
+          <span class="tile-art"></span>
+          <span class="tile-cap"><b>Past Editions</b><span class="tile-sub">Themes since the 1990s</span></span>
+          <span class="tile-go">&#8599;</span>
+        </a>
       </div>
     </div></section>
 
@@ -498,6 +510,26 @@
       </dl>
     </div></section>`;
   }
+
+  /* ---------- scroll-reveal animations ---------- */
+  (function(){
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const app = document.getElementById('app');
+    if(!app || reduce) return;
+    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:0.06, rootMargin:'0px 0px -32px 0px' });
+    const SEL = '.section-head, .card, .tile, .vcard2, .spk-card, .prog-day, .acc, .bio, .feature, dl.info, .edition, .filters, .vgrid2 > *, .plist';
+    function tag(){
+      let i=0, last=null;
+      app.querySelectorAll(SEL).forEach(el=>{
+        if(el.dataset.rev) return; el.dataset.rev='1';
+        const p=el.parentElement; if(p!==last){ i=0; last=p; }
+        el.classList.add('reveal'); el.style.transitionDelay=Math.min(i*45,260)+'ms'; i++;
+        io.observe(el);
+      });
+    }
+    new MutationObserver(()=>requestAnimationFrame(tag)).observe(app,{childList:true});
+    requestAnimationFrame(tag);
+  })();
 
   window.UPSS = { renderHome, renderCurrentHome, renderCurrentSpeakers, renderCurrentProgram, renderCurrentParticipation, renderCurrentParticipants, renderCurrentUrbino, renderCurrentContacts, renderLectures, renderSpeakers, renderEditions, renderAbout };
 })();

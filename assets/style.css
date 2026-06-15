@@ -243,3 +243,35 @@ footer .fine { margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--
 .tile .tnum{color:var(--muted);font-size:.82rem;letter-spacing:.12em}
 .tile h3{margin:10px 0 0;font-size:1.5rem;font-weight:700}
 @media(max-width:760px){.tiles{grid-template-columns:1fr}.tile{min-height:120px}}
+
+/* ============ animations ============ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.hero .eyebrow{animation:fadeUp .6s .04s both}
+.hero h1{animation:fadeUp .7s .14s both}
+.hero .lead{animation:fadeUp .7s .28s both}
+.hero .cta-row{animation:fadeUp .7s .42s both}
+.hero-fig{animation:fadeUp .85s .3s both}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.22,.7,.2,1),transform .65s cubic-bezier(.22,.7,.2,1);will-change:opacity,transform}
+.reveal.in{opacity:1;transform:none}
+.btn{transition:transform .16s ease,background .2s ease,color .2s ease,border-color .2s ease}
+.btn:hover{transform:translateY(-2px)}
+header nav a,.navdrop-top{transition:color .2s ease}
+.card,.vcard2,.spk-card,.tile{transition:transform .25s ease,border-color .25s ease,background .25s ease}
+.cthumb{transition:transform .5s ease}
+.card:hover .cthumb{transform:scale(1.05)}
+/* animated dropdown */
+.navdrop-menu{display:flex!important;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s ease,transform .2s ease,visibility .2s ease}
+.navdrop:hover .navdrop-menu{opacity:1;visibility:visible;transform:none}
+.subnav a{transition:color .2s ease}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1!important;transform:none!important;transition:none}.hero .eyebrow,.hero h1,.hero .lead,.hero .cta-row,.hero-fig{animation:none}}
+/* ============ home tiles (image cards) ============ */
+.tile{position:relative;display:block;min-height:270px;border-radius:18px;overflow:hidden;text-decoration:none;color:#fff;border:1px solid var(--line-soft);background:#000}
+.tile-art{position:absolute;inset:0;background:var(--img) center/cover no-repeat;opacity:.45;transform:scale(1.03);transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .5s ease}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.88));pointer-events:none}
+.tile-cap{position:absolute;left:0;right:0;bottom:0;padding:24px;z-index:2;display:flex;flex-direction:column;gap:4px}
+.tile-cap b{font-size:1.5rem;font-weight:700}
+.tile-sub{color:var(--ink-soft);font-size:.92rem}
+.tile-go{position:absolute;top:18px;right:20px;z-index:2;color:#fff;opacity:.55;font-size:1.1rem;transition:transform .3s ease,opacity .3s ease}
+.tile:hover{transform:translateY(-5px);border-color:var(--line)}
+.tile:hover .tile-art{transform:scale(1.12);opacity:.62}
+.tile:hover .tile-go{transform:translate(3px,-3px);opacity:1}
