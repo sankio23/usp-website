@@ -249,7 +249,10 @@
     </div></section>
     <section class="block" style="border-top:none;padding-top:14px"><div class="wrap">
       ${S.editions.map(ed).join("")}
-      <p style="color:var(--muted);margin-top:24px;font-size:.95rem">The School has run annually for nearly three decades. Earlier editions (I–XXIII) predate this web archive; some lectures are on the <a href="${S.channel}" target="_blank" rel="noopener">YouTube channel</a> and entries can be added here over time.</p>
+      <div class="section-head" style="margin-top:46px"><div class="kicker">Archive</div><h2>Earlier editions</h2>
+        <p>The School has run annually since the late 1990s. Editions before 2019 predate this video archive — here are their themes.</p></div>
+      <ul class="earlier-list">${S.earlier.map(e=>`<li><span>${e.r}</span> ${esc(e.t)}</li>`).join("")}</ul>
+      <p style="color:var(--muted);margin-top:18px;font-size:.92rem">…and earlier editions back to the II (Foundations of Physical Theories).</p>
     </div></section>`;
   }
 

@@ -280,3 +280,8 @@ header nav a,.navdrop-top{transition:color .2s ease}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
 .subnav{animation:fadeDown .5s ease both}
 @media (prefers-reduced-motion: reduce){.subnav{animation:none}}
+
+/* ---- earlier editions list ---- */
+.earlier-list{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.earlier-list li{border:1px solid var(--line-soft);border-radius:10px;padding:13px 16px;color:var(--ink-soft);font-size:.95rem}
+.earlier-list li span{color:#fff;font-weight:700;margin-right:10px;font-variant-numeric:tabular-nums}

@@ -47,13 +47,22 @@ window.SCHOOL = {
     { n: "Isabella Tassani", a: "University of Urbino" }
   ],
 
+  earlier: [
+    { r: "XXI",  t: "Philosophy of Quantum Field Theory" },
+    { r: "XX",   t: "Spacetime and Quantum Physics" },
+    { r: "XIX",  t: "Many Worlds Interpretation" },
+    { r: "XVIII",t: "Einstein Philosopher-Scientist" },
+    { r: "XVII", t: "Geometry and Physics" },
+    { r: "XVI",  t: "Prevedere il Futuro" },
+    { r: "XV",   t: "La Natura dell'Artificiale" }
+  ],
   // ---- EDITIONS (newest first) -------------------------------------------
   editions: [
     {
       roman: "XXIX", num: 29, year: 2026, slug: "xxix",
       theme: "History and Philosophy of the Wave Function",
       tag: "Wave Function", art: "assets/art/wave-function.svg",
-      cover: "https://lh3.googleusercontent.com/sitesv/AA5AbUAvO3Y98z-dEB-_3MRiLtqHWgt2-rd1jdFQ7bA4IkhBMU68ItcOZK86yWmxJjYbTSSl4aSfn2iAtR8CQA5hvqbKEx-yCS0IuXYkC0LH3URuN1FHzXp3FLS3hiHf5J9_7r7heXs2PWwy3uOI0SQydwaxPcSmV1KMYgp6umeYCLBpH553wdPk4-dcunevm54=w1600",
+      cover: "assets/covers/xxix-wave-function.jpg",
       dateRange: "15–19 June 2026",
       location: "Palazzo Battiferri, Via Aurelio Saffi 42, Urbino",
       status: "current", format: "in person",
@@ -74,7 +83,7 @@ window.SCHOOL = {
       roman: "XXVIII", num: 28, year: 2025, slug: "xxviii",
       theme: "Epistemology of Quantum Gravity",
       tag: "Quantum Gravity", art: "assets/art/quantum-gravity.svg",
-      cover: "https://lh3.googleusercontent.com/sitesv/AA5AbUDLpyO6ZZwjhIyN9NCS4plFnULrl9aoqsTx8ur2qRJTRvxSAKwGq-XuIgphX-ERwMDcISX8oOJOZ9EEbF2p9y31xVCWOfgIi4M8xNsqkkSD9QoOHkpNQ9ea4ong2ng9-sd2SIGJATK_5ennq7I0lQV4TnNQ9t4fg6uy32fvPRysOE_4nBYR4YttT0t4JXg=w1600",
+      cover: "assets/covers/xxviii-quantum-gravity.jpg",
       dateRange: "26–30 May 2025",
       location: "Palazzo Albani, Via Timoteo Viti 10, Urbino",
       status: "past", format: "in person",
@@ -93,7 +102,7 @@ window.SCHOOL = {
       roman: "XXVII", num: 27, year: 2024, slug: "xxvii",
       theme: "Philosophy of Dark Energy",
       tag: "Dark Energy", art: "assets/art/dark-energy.svg",
-      cover: "https://lh3.googleusercontent.com/sitesv/AA5AbUCaqErW3tCvj1O5cYbwacPY3w6__anGtf7zeZA9NUsMpBrgQ17f27FD96MGDCmKssoXA7FoKe2x5--WJReew41NFZ11uPGrJWAVNF4OkNxKdx--YTowg1qkfo_6KTYkstT4jtHiwJzr91WmNRO_tfQ-zEn7Ao-AJNKbGFVTs-ruskUCbxxKMyhX-OZs=w1600",
+      cover: "assets/covers/xxvii-dark-energy.jpg",
       dateRange: "3–7 June 2024",
       location: "Palazzo Albani, Via Timoteo Viti 10, Urbino",
       status: "past", format: "in person",
@@ -125,7 +134,7 @@ window.SCHOOL = {
       roman: "XXVI", num: 26, year: 2023, slug: "xxvi",
       theme: "Philosophy of Dark Matter",
       tag: "Dark Matter", art: "assets/art/dark-matter.svg",
-      cover: "https://lh3.googleusercontent.com/sitesv/AA5AbUC8E1gbHwyRPcf6P3AUq9Ts7WhaCLDzz7WUy7x6R7A7kUEujsd2FjoKib4ZPfV5h5UEyr81kq1y-P9EP65nCm8hrF0AvMzaBqs6vYSY1OG_0dRHVDvdNvb1VT3gRvT4HnMQvw6vDnzcQDokeFMV_7HndrNvpkolS4JELNRKOH4IlZlkDMJpNfeUBevNZx4=w1600",
+      cover: "assets/covers/xxvi-dark-matter.jpg",
       dateRange: "5–9 June 2023",
       location: "University of Urbino",
       status: "past", format: "in person",
@@ -222,6 +231,62 @@ window.SCHOOL = {
         { id: "VVFgqIlOT5c", t: "Erik Curiel — Cosmic Censorship and Determinism in Semi-Classical Gravity" },
       ],
       official: "https://sites.google.com/view/xxivurbinosummerschool/home"
+    },
+    {
+      roman: "XXIII", num: 23, year: 2020, slug: "xxiii",
+      theme: "Philosophy of Quantum Computation",
+      tag: "Quantum Computation", art: "assets/art/quantum-gravity.svg",
+      cover: "assets/covers/xxiii-quantum-computation.jpg",
+      dateRange: "15–18 June 2020",
+      location: "Online (COVID-19) · University of Urbino",
+      status: "past", format: "online",
+      blurb: "Dedicated to the philosophy of quantum computation: quantum logic, the conceptual foundations and philosophical implications of quantum information, quantum algorithms, and quantum machine learning.",
+      speakers: [
+        { n: "Roberto Giuntini", a: "University of Cagliari" },
+        { n: "Maria Luisa Dalla Chiara", a: "University of Florence" },
+        { n: "Michael Cuffaro", a: "MCMP, LMU München" },
+        { n: "Giuseppe Sergioli", a: "University of Cagliari" },
+        { n: "Rossella Lupacchini", a: "University of Bologna" },
+        { n: "Gustavo Martín Bosyk", a: "University of Cagliari" }
+      ],
+      playlist: "PLGB6R7lq1LX-FxYKyexw2bnXObDfKTBeA", firstVideo: "wx4ehvDzY-g",
+      lessons: [
+        { id: "wx4ehvDzY-g", t: 'Greetings and Introduction' },
+        { id: "13qFXhKetK0", t: 'Roberto Giuntini — From Classical Logic to the Logic of Quantum Computation I' },
+        { id: "J4Kc6fWON0c", t: 'Maria Luisa Dalla Chiara — From Classical Logic to the Logic of Quantum Computation II' },
+        { id: "dbNbrmJ37mU", t: "Rossella Lupacchini — Many Worlds, Turing's Limits, and Quantum Information" },
+        { id: "PqHN4kzQjGE", t: 'Michael Cuffaro — Basic Concepts of Quantum Computation' },
+        { id: "viub-ujUQz4", t: 'Michael Cuffaro — Quantum Algorithms and Realizations' },
+        { id: "yl4aa7K_CGQ", t: 'Gustavo Martin Bosyk — Introduction to Quantum Resource Theories' },
+        { id: "VqzNonndxMs", t: 'Michael Cuffaro — Philosophical Implications of Quantum Computing, Part I' },
+        { id: "zU1qipRLlMc", t: 'Michael Cuffaro — Philosophical Implications of Quantum Computing, Part II' },
+        { id: "Bsbr7jPOZtQ", t: 'Giuseppe Sergioli — Quantum Information and Machine Learning' },
+        { id: "pZvZy-SSKh0", t: 'Giuseppe Sergioli — Quantum Information and Machine Learning II' },
+        { id: "R7oV-gKpEh4", t: 'East and Mariani — What are the Informational Axioms for Quantum Theory really about?' },
+        { id: "nsC88nOydfw", t: "Enrico Maresca — Quantum Computation in the light of von Neumann's Geometry" },
+        { id: "YdykSoxh0OY", t: 'Gino Tarozzi — In Memory of Giulio Giorello' },
+      ],
+      official: null
+    },
+    {
+      roman: "XXII", num: 22, year: 2019, slug: "xxii",
+      theme: "Philosophy of Cosmology",
+      tag: "Cosmology", art: "assets/art/dark-energy.svg",
+      cover: "assets/covers/xxii-cosmology.jpg",
+      dateRange: "17–20 June 2019",
+      location: "University of Urbino",
+      status: "past", format: "in person",
+      blurb: "Devoted to the philosophy of cosmology: the global structure of spacetime, the foundations of cosmological models, and their epistemological and metaphysical implications.",
+      speakers: [
+        { n: "Christopher Smeenk", a: "Western University / Rotman Institute" },
+        { n: "Erik Curiel", a: "LMU München" },
+        { n: "Alfio Bonanno", a: "INAF, Catania" },
+        { n: "Elena Pian", a: "INAF, Bologna" },
+        { n: "Vincenzo Fano", a: "University of Urbino" },
+        { n: "Giovanni Macchia", a: "University of Urbino" }
+      ],
+      playlist: null,
+      official: null
     }
   ]
 };
