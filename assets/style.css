@@ -288,9 +288,9 @@ header nav a,.navdrop-top{transition:color .2s ease}
 
 /* ---- cumulative lecturers cards ---- */
 .scard{display:flex;flex-direction:column;align-items:flex-start}
-.scard-av{position:relative;width:92px;height:92px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 30% 20%,#2a2a2a,#000);margin-bottom:14px;flex:0 0 auto}
+.scard-av{position:relative;width:120px;height:120px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 30% 20%,#2a2a2a,#000);margin-bottom:14px;flex:0 0 auto}
 .scard-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%}
-.scard-av .spk-mono{font-size:1.35rem}
+.scard-av .spk-mono{font-size:1.8rem}
 
 .lec-name{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
 .lec-name:hover{color:#fff;border-color:rgba(255,255,255,.5)}
