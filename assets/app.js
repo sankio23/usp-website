@@ -210,17 +210,16 @@
       return `
       <div class="card scard">
         <div class="scard-av"><span class="spk-mono">${init}</span>${slug?`<img src="assets/speakers/${slug}.jpg" alt="${esc(p.n)}" onerror="this.remove()">`:""}</div>
-        <h3>${esc(p.n)}</h3>
+        <h3>${p.u?`<a class="lec-name" href="${esc(p.u)}" target="_blank" rel="noopener">${esc(p.n)} <span class="lec-go">↗</span></a>`:esc(p.n)}</h3>
         <div class="when">${esc(p.a)}</div>
         <div class="spk-eds">${p.eds.map(e=>`<a href="editions.html#${e.slug}" title="${esc(e.tag)}">${e.roman} ’${String(e.year).slice(2)}</a>`).join("")}</div>
-        ${p.u?`<a class="btn btn-ghost spk-profile" href="${esc(p.u)}" target="_blank" rel="noopener">Institutional profile ↗</a>`:""}
       </div>`;
     }).join("");
     byId("app").innerHTML = `
     <section class="hero" style="padding:64px 0 26px"><div class="wrap">
       <span class="eyebrow">Across all editions</span>
       <h1 style="font-size:clamp(2rem,4.6vw,3rem)">Lecturers</h1>
-      <p class="lead">The physicists and philosophers who have lectured at the School. Each tag links to the edition they taught in; the button opens their institutional profile.</p>
+      <p class="lead">The physicists and philosophers who have lectured at the School. Each tag links to the edition they taught in; click a name to open their institutional profile.</p>
     </div></section>
     <section class="block" style="border-top:none;padding-top:14px"><div class="wrap">
       <div class="grid cols-3">${cards}</div>
