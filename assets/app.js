@@ -40,7 +40,7 @@
           </div>
         </div>
         ${link("lectures.html","Lecture Library","lectures")}
-        ${link("speakers.html","Speakers","speakers")}
+        ${link("speakers.html","Lecturers","speakers")}
         ${link("editions.html","Past Editions","editions")}
         ${link("about.html","About &amp; Apply","about")}
       </nav>
@@ -60,7 +60,7 @@
         <div><h4>Navigate</h4>
           <a href="index.html">Home</a><a href="current.html">2026 Edition</a>
           <a href="lectures.html">Lecture Library</a>
-          <a href="speakers.html">Speakers</a><a href="editions.html">Past Editions</a>
+          <a href="speakers.html">Lecturers</a><a href="editions.html">Past Editions</a>
           <a href="about.html">About &amp; Apply</a>
         </div>
         <div><h4>Partners</h4>${partners}</div>
@@ -108,7 +108,7 @@
         </a>
         <a class="tile" href="speakers.html" style="--img:url('assets/art/wave-function.svg')">
           <span class="tile-art"></span>
-          <span class="tile-cap"><b>Speakers</b><span class="tile-sub">Physicists &amp; philosophers</span></span>
+          <span class="tile-cap"><b>Lecturers</b><span class="tile-sub">Physicists &amp; philosophers</span></span>
           <span class="tile-go">&#8599;</span>
         </a>
         <a class="tile" href="editions.html" style="--img:url('assets/art/dark-matter.svg')">
@@ -202,17 +202,24 @@
       map.get(k).eds.push({ roman: e.roman, year: e.year, tag: e.tag, slug: e.slug });
     }));
     const people = [...map.values()].sort((a,b) => a.n.split(" ").slice(-1)[0].localeCompare(b.n.split(" ").slice(-1)[0]));
-    const cards = people.map(p => `
+    const PHOTO = { "Valia Allori":"allori", "Andrea Di Biagio":"dibiagio", "Federico Laudisa":"laudisa", "Wayne Myrvold":"myrvold", "Alyssa Ney":"ney", "Vincenzo Fano":"fano" };
+    const cards = people.map(p => {
+      const slug = PHOTO[p.n];
+      const parts = p.n.trim().split(/\s+/);
+      const init = (parts[0][0] + (parts.length>1 ? parts[parts.length-1][0] : "")).toUpperCase();
+      return `
       <div class="card scard">
+        <div class="scard-av"><span class="spk-mono">${init}</span>${slug?`<img src="assets/speakers/${slug}.jpg" alt="${esc(p.n)}" onerror="this.remove()">`:""}</div>
         <h3>${esc(p.n)}</h3>
         <div class="when">${esc(p.a)}</div>
         <div class="spk-eds">${p.eds.map(e=>`<a href="editions.html#${e.slug}" title="${esc(e.tag)}">${e.roman} ’${String(e.year).slice(2)}</a>`).join("")}</div>
         ${p.u?`<a class="btn btn-ghost spk-profile" href="${esc(p.u)}" target="_blank" rel="noopener">Institutional profile ↗</a>`:""}
-      </div>`).join("");
+      </div>`;
+    }).join("");
     byId("app").innerHTML = `
     <section class="hero" style="padding:64px 0 26px"><div class="wrap">
       <span class="eyebrow">Across all editions</span>
-      <h1 style="font-size:clamp(2rem,4.6vw,3rem)">Speakers</h1>
+      <h1 style="font-size:clamp(2rem,4.6vw,3rem)">Lecturers</h1>
       <p class="lead">The physicists and philosophers who have lectured at the School. Each tag links to the edition they taught in; the button opens their institutional profile.</p>
     </div></section>
     <section class="block" style="border-top:none;padding-top:14px"><div class="wrap">

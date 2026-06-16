@@ -285,3 +285,9 @@ header nav a,.navdrop-top{transition:color .2s ease}
 .earlier-list{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
 .earlier-list li{border:1px solid var(--line-soft);border-radius:10px;padding:13px 16px;color:var(--ink-soft);font-size:.95rem}
 .earlier-list li span{color:#fff;font-weight:700;margin-right:10px;font-variant-numeric:tabular-nums}
+
+/* ---- cumulative lecturers cards ---- */
+.scard{display:flex;flex-direction:column;align-items:flex-start}
+.scard-av{position:relative;width:72px;height:72px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 30% 20%,#2a2a2a,#000);margin-bottom:14px;flex:0 0 auto}
+.scard-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%}
+.scard-av .spk-mono{font-size:1.35rem}
